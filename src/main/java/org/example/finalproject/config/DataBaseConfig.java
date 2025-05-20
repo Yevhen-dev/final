@@ -1,6 +1,7 @@
 package org.example.finalproject.config;
 
 
+import org.example.finalproject.domains.MenuItem;
 import org.example.finalproject.repositories.MenuItemRepository;
 import org.example.finalproject.services.UserService;
 import org.springframework.boot.CommandLineRunner;
@@ -22,13 +23,13 @@ public class DataBaseConfig implements WebMvcConfigurer {
 //                userService.registerUser("admin", "1234", "admin@gmail.com", "ROLE_ADMIN");
 //                userService.registerUser("Me", "1234", "springtrialmail@gmail.com", "ROLE_USER");
 //
-//                MenuItem burger = new MenuItem("BigBro", "burger with cheese", 12.5);
-//                MenuItem sand = new MenuItem("BLT", "bacon, lettuce, tomato", 10.0);
-//                MenuItem hotDog = new MenuItem("HotDog", "sausage and bread", 8.7);
+//                MenuItem str = new MenuItem("Strawberry danish", "pastry with strawberry jam", 5.3);
+//                MenuItem drinks  = new MenuItem("Drink", "Cola, Fanta, Srite", 3.2);
+//                MenuItem coffee = new MenuItem("Coffee", "coffee with milk", 4.0);
 //
-//                menuItemRepository.save(burger);
-//                menuItemRepository.save(sand);
-//                menuItemRepository.save(hotDog);
+//                menuItemRepository.save(str);
+//                menuItemRepository.save(drinks);
+//                menuItemRepository.save(coffee);
 
 
             }
