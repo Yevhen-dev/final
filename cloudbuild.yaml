@@ -1,27 +1,26 @@
 steps:
+  # Шаг 1: Maven-сборка
   - name: 'gcr.io/cloud-builders/mvn'
     args: ['clean', 'package', '-DskipTests']
 
+  # Шаг 2: Docker-сборка
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/spring-boot-app', '.']
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/final-project', '.']
 
+  # Шаг 3: Docker push
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/spring-boot-app']
+    args: ['push', 'gcr.io/$PROJECT_ID/final-project']
 
+  # Шаг 4: Деплой на Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
-      - 'run'
-      - 'deploy'
-      - 'spring-boot-app'
-      - '--image'
-      - 'gcr.io/$PROJECT_ID/spring-boot-app'
-      - '--region'
-      - 'us-central1'
-      - '--platform'
-      - 'managed'
-      - '--allow-unauthenticated'
-      - '--add-cloudsql-instances'
-      - 'your-project:us-central1:spring-db'
-      - '--set-env-vars'
-      - 'DB_USER=your_user,DB_PASS=your_password'
+      [
+        'run', 'deploy', 'final-project',
+        '--image', 'gcr.io/$PROJECT_ID/final-project',
+        '--region', 'us-central1',
+        '--platform', 'managed',
+        '--allow-unauthenticated',
+        '--add-cloudsql-instances', 'your-project:us-central1:spring-db',
+        '--set-env-vars', 'DB_USER=your_user,DB_PASS=your_pass'
+      ]
