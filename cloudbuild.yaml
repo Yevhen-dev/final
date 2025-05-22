@@ -24,3 +24,15 @@ steps:
         '--add-cloudsql-instances', 'your-project:us-central1:spring-db',
         '--set-env-vars', 'DB_USER=your_user,DB_PASS=your_pass'
       ]
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      [
+        'run', 'deploy', 'workandrest',
+        '--image', 'gcr.io/$PROJECT_ID/final-project',
+        '--region', 'us-central1',
+        '--platform', 'managed',
+        '--allow-unauthenticated',
+        '--timeout', '600s'
+      ]
